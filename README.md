@@ -45,7 +45,7 @@ as a user, I want to be able to decide whether I am taking a memory or attention
 as a user, I would like to be able to see what my immediate results are from my cognitive test of choice is so that I can structure my work accordingly
 
 ### User Story 4
-as a user, I would like to ba able to input my mood and productivity rating (along with the date/time that for each rating) so that they can be used later for any trend analysis
+as a user, I would like to be able to input my mood and productivity rating (along with the date/time that for each rating) so that they can be used later for any trend analysis
 
 ### User Story 5
 as a user, I would like to be able to view a graph that shows my productivity as a function of my mood and my productivity as a function of how well I do on each cognitive test so that I can learn more about how my mood and mental sharpness affect how much I might get done on any given day.
@@ -105,9 +105,23 @@ as a researcher, I would like to be able to access data from individuals to do a
 | Name | Use Case |
 ---
 ## Entities
-### Entity 1
-### Entity 2
-(Add additional entities as needed.)
+CognitiveData
+Fields:
+   date : Date
+   mood : String
+   cogTestType : String
+   cogResults : float
+   productivityRating : float
+Methods:
+   returnData : Dictionary
+               {date : [mood, (cogTest, cogResutls), productivityRating]}
+
+User
+Fields:
+   username : String
+Methods:
+   getUsername : String
+
 ---
 ## API Usage
 **API Name:**
