@@ -173,18 +173,25 @@ CognitiveData
 Fields:
    date : Date
    mood : String
-   cogTestType : String
-   cogResults : float
+   cogTest : Object[]
    productivityRating : float
 Methods:
    returnData : Dictionary
-               {date : [mood, (cogTest, cogResutls), productivityRating]}
+               {date : [mood, cogTest, productivityRating]}
 
-User
+User (Abstract)
 Fields:
    username : String
 Methods:
    getUsername : String
+
+RegularUser (extends User)
+Fields:
+   doneTest : Boolean
+Methods:
+   doneTest : void
+
+Researcher (extends User)
 
 ---
 ## API Usage
