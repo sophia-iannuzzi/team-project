@@ -27,17 +27,21 @@ public class ViewGraphInteractor implements ViewGraphInputBoundry {
 
         // get an array of CognitiveData from the storage for the current user
         CognitiveData[] cognitiveData = this.dataBaseAccess.getData(inputData.getUsername());
-//        Date[] dataDates = cognitiveData[0].Keys();
 
-        String xName;
-        String yName;
+        // set the x and y axis titles
+        String xName = inputData.getTypeSelected();
+        String yName = "Productivity";
 
-
+        // accumulate the data points for the x and y values
+        int i = 0;
         for (CognitiveData data : cognitiveData) {
+            Date date = data.getDate();
 
-
-            Double[] yValues;
+            double[] yValues = new double[1];
+            yValues[i] = data.getProducitivty();
             Object[] xValues;
+
+            i++;
         }
 
     }
