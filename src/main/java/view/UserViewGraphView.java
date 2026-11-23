@@ -77,7 +77,7 @@ public class UserViewGraphView extends JPanel {
         );
     }
 
-    // for testing
+    // for testing & temporary viewing of view
     public static void main(String[] args) {
         UserViewGraphView u = new UserViewGraphView();
 

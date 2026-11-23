@@ -22,7 +22,5 @@ public class ViewGraphInputData {
     /**
      * @return type of graph selected by user to view
      */
-    public String getTypeSelected() {
-        return this.typeSelected;
-    }
+    public String getTypeSelected() { return this.typeSelected; }
 }
