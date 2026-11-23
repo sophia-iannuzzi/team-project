@@ -3,13 +3,13 @@ package use_case.view_graph;
 /**
  * OutputData of the use case interactor of the ViewGraph use case.
  */
-public abstract class ViewGraphOutputData {
+public class ViewGraphOutputData {
     private String xAxis;
     private String yAxis;
     private Object[] xValues;
-    private Object[] yValues;
+    private double[] yValues;
 
-    ViewGraphOutputData(String xAxis, String yAxis, Object[] xValues, Object[] yValues) {
+    ViewGraphOutputData(String xAxis, String yAxis, Object[] xValues, double[] yValues) {
         this.xAxis = xAxis;
         this.yAxis = yAxis;
         this.xValues = xValues;
@@ -28,5 +28,5 @@ public abstract class ViewGraphOutputData {
      * @return the corresponding axis coordinates.
      */
     public Object[] getxValues() { return this.xValues; }
-    public Object[] getyValues() { return this.yValues; }
+    public double[] getyValues() { return this.yValues; }
 }

@@ -66,4 +66,11 @@ public class CognitiveData {
         return dict;
     }
 
+
+    // temporary, official versions on entites_update branch
+    public Date getDate() { return this.date; }
+    public double getProductivity() { return this.productivityRating; }
+    public Object[] getCognitiveTest() { return this.cogTest; }
+    public String getMood() { return this.mood; }
+
 }
