@@ -56,6 +56,12 @@ This contract sets out shared expectations and commitments for how our team will
 * We are all aiming to do as best in the course as we can so this hopefully should be easy. We all aim to distribute work evenly and complete that work at a high quality. We also are including internal deadlines. We want to do final merges at least two days before the external deadline.
 
 ---
+## Pull Requests
+
+* When a pull request is made to the main branch, it requires 2 reviews before merging. Once the
+* reviews have been completed, and are both in agreement to merging, the pull request can be merged
+* into the main branch. The member responsible for merging must notify the rest of the team when
+* they do so.
 
 ---
 
