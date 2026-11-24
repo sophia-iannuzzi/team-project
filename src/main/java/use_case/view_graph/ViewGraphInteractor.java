@@ -34,30 +34,41 @@ public class ViewGraphInteractor implements ViewGraphInputBoundry {
         String xName = inputData.getTypeSelected();
         String yName = "Productivity";
 
-        if (choice.equals("mood")) {
-
-            ArrayList<String> xValues = new ArrayList<String>();
-            // accumulate the moods on the x-axis
-            for (CognitiveData data : cognitiveData) {
-                // add one of each mood
-                if (!xValues.contains(data.getMood())) {
-                    xValues.add(data.getMood());
+        // user selects mood scenario
+        switch (choice) {
+            case "mood":
+                ArrayList<String> xValues = new ArrayList<String>();
+                // accumulate the moods on the x-axis
+                for (CognitiveData data : cognitiveData) {
+                    // add one of each mood
+                    if (!xValues.contains(data.getMood())) {
+                        xValues.add(data.getMood());
+                    }
                 }
-            }
 
-            double[] yValues = new double[xValues.size()];
-            // accumulate the corresponding productivity values per mood on the y-axis
-            int i = 0;
-            for (String mood : xValues) {
-                yValues[i] = this.getAverageMood(mood, cognitiveData);
-                i++;
-            }
+                double[] yValues = new double[xValues.size()];
+                // accumulate the corresponding productivity values per mood on the y-axis
+                int i = 0;
+                for (String mood : xValues) {
+                    yValues[i] = this.getAverageMood(mood, cognitiveData);
+                    i++;
+                }
 
-            // create the output data
-            ViewGraphOutputData outputData = new ViewGraphOutputData(xName, yName, xValues.toArray(), yValues);
+                // create the output data
+                ViewGraphOutputData outputData = new ViewGraphOutputData(xName, yName, xValues.toArray(), yValues);
 
-            // pass output data to presenter
-            this.presenter.prepareSuccessView(outputData);
+                // pass output data to presenter
+                this.presenter.prepareSuccessView(outputData);
+            case "score":
+//                ArrayList<Double> xValues = new ArrayList<Double>();
+//                // accumulate the scores on the x-axis
+//                for (CognitiveData data : cognitiveData) {
+//                    // add one of each score
+//                    Double score = (Double)data.getCognitiveTest()[1];
+//                    if (!xValues.contains(score)) {
+//                        xValues.add(score);
+//                    }
+//                }
         }
     }
 
