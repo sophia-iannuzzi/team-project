@@ -2,7 +2,7 @@ package ForTestingPurposes;
 
 import entities.CognitiveData;
 import entities.RegularUser;
-import usecase.TestSelection.TestSelectionDataAccessInterface;
+import use_case.TestSelection.TestSelectionDataAccessInterface;
 
 import java.util.Date;
 import java.util.HashMap;

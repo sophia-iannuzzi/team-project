@@ -1,4 +1,4 @@
-package usecase.TestSelection;
+package use_case.TestSelection;
 
 public interface TestSelectionInputBoundary {
     // Executes the Choosing Cognitive Test Use Case

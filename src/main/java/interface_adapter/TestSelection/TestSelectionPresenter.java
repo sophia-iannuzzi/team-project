@@ -2,8 +2,8 @@ package interface_adapter.TestSelection;
 import interface_adapter.AttentionTest.AttentionTestState;
 import interface_adapter.AttentionTest.AttentionTestViewModel;
 import interface_adapter.MemoryTest.MemoryTestState;
-import usecase.TestSelection.TestSelectionOutputBoundary;
-import usecase.TestSelection.TestSelectionOutputData;
+import use_case.TestSelection.TestSelectionOutputBoundary;
+import use_case.TestSelection.TestSelectionOutputData;
 import interface_adapter.MemoryTest.MemoryTestViewModel;
 import ViewManager.ViewManagerModel;
 

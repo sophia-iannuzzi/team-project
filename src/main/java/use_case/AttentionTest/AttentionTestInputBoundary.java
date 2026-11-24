@@ -1,4 +1,4 @@
-package usecase.AttentionTest;
+package use_case.AttentionTest;
 
 public interface AttentionTestInputBoundary {
 }

@@ -1,7 +1,7 @@
 package interface_adapter.TestSelection;
 
-import usecase.TestSelection.TestSelectionInputBoundary;
-import usecase.TestSelection.TestSelectionInputData;
+import use_case.TestSelection.TestSelectionInputBoundary;
+import use_case.TestSelection.TestSelectionInputData;
 
 /**
  * A controller class representing
