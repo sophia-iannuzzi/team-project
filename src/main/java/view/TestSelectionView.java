@@ -10,6 +10,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * The View for when the user chooses to do Cognitive Test.
+ */
+
 public class TestSelectionView extends JPanel implements ActionListener, TestSelectionViewModelListener {
 
     private final TestSelectionViewModel testSelectionViewModel;
@@ -90,6 +94,10 @@ public class TestSelectionView extends JPanel implements ActionListener, TestSel
         this.add(buttons);
     }
 
+    /**
+     * React to a button click that results in evt.
+     * @param evt the ActionEvent to react to
+     */
     public void actionPerformed(ActionEvent evt) {
         System.out.println("Click " + evt.getActionCommand());
     }

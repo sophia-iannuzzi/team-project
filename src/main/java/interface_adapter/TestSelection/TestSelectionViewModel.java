@@ -3,6 +3,10 @@ package interface_adapter.TestSelection;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The View Model for the Test Selection View.
+ */
+
 public class TestSelectionViewModel {
     private final List<TestSelectionViewModelListener> listeners = new ArrayList<>();
 

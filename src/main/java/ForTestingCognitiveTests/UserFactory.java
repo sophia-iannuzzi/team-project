@@ -1,4 +1,4 @@
-package ForTestingPurposes;
+package ForTestingCognitiveTests;
 
 import entities.RegularUser;
 
