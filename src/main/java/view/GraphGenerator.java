@@ -26,7 +26,7 @@ public class GraphGenerator {
         if(data == null){
             throw new IllegalAccessException("Graph data cannot be null");
         }
-        switch(data.getType()){
+        switch(data.getType()){ //takes graph type as cases in order to determine what method to use
             case BAR:
                 return createBarGraph(data);
             case LINE:
@@ -36,18 +36,23 @@ public class GraphGenerator {
         }
     }
 
+    //creates line graph
     public JFXPanel createLineGraph(GraphData data){
         NumberAxis x = new NumberAxis();
         NumberAxis y = new NumberAxis();
+        //stores titles of axis
         x.setLabel(data.getxAxisTitle());
         y.setLabel(data.getyAxisTitle());
 
+        //creates chart
         LineChart<Number, Number> chart = new LineChart<>(x,y);
 
+        //sets title of the chart
         chart.setTitle(data.getTitle());
         List<Double> xVal = data.getxValuesLine();
         List<Double> yVal = data.getyValuesLine();
 
+        //series to store the data
         XYChart.Series<Number, Number> series= new XYChart.Series<>();
 
         for(int i = 0; i<xVal.size();i++){
@@ -57,11 +62,11 @@ public class GraphGenerator {
         chart.getData().add(series);
         Scene scene = new Scene(chart);
         panel.setScene(scene);
-
-        return  panel;
+        return panel;
 
     }
 
+    //does the same as createLinegraph but does it for bar chart
     public JFXPanel createBarGraph(GraphData data){
         CategoryAxis x = new CategoryAxis();
         NumberAxis y = new NumberAxis();
