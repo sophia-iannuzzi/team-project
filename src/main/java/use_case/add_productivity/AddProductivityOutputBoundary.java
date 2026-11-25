@@ -11,4 +11,6 @@ public interface AddProductivityOutputBoundary {
     public void prepareAddProductivityView(LocalDate date, String username);    // They have given a correct date and can now add their productivity rating
 
     public void prepareSuccessView(AddProductivityOutputData addProductivityOutputData);    // They have successfully logged their productivity rating
+
+    public void prepareInvalidRatingView(String error_message);
 }

@@ -103,11 +103,33 @@ public class AddProductivityInteractor implements AddProductivityDateInputBounda
         //Get the input data from our InputData object
         final String username = productivityInputData.getUsername();
         final LocalDate date = productivityInputData.getDate();
-        final Double rating = productivityInputData.getRating();
+        final String string_rating = productivityInputData.getRating();
+
+        // Check they inputted an answer
+        if (string_rating.isEmpty()){
+            presenter.prepareInvalidRatingView("You did not input a rating. Please try again.");
+            return;
+        }
+
+        // Check if the answer they input is a Double - if it is, save it
+        double rating = 0.0;
+        try {
+            rating = Double.parseDouble(string_rating);
+        } catch (NumberFormatException e){
+            presenter.prepareInvalidRatingView("Please enter your score as a double (e.g. 1.0");
+            return;
+        }
+
+        // Check the rating is valid
+        if (rating < 1 || rating > 10) {
+            presenter.prepareInvalidRatingView("The rating you inputted falls outside the range of []");
+            return;
+        }
 
         // We have already validated the date and checked if the date was one they wanted to modify
+        // We have also validated that it is a valid rating that they have added.
         // Now all we have to do is call prepareSuccessView and add the data to the productivity data access interface
-        this.dataAccessInterface.updateProductivity(username, date, rating);
+        this.dataAccessInterface.updateProductivity(username, date, (Double) rating);
         presenter.prepareSuccessView(new AddProductivityOutputData(rating, date));
     }
 }
