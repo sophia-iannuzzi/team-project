@@ -94,10 +94,8 @@ public class AddProductivityInteractor implements AddProductivityDateInputBounda
                 // If we have reached this part of the code, then the date is correctly formatted and there is not an
                 // existing productivity value for the date, so we can continue to AddProductivity
                 presenter.prepareAddProductivityView(date, username);
-
             }
         }
-
     }
 
     @Override
