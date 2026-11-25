@@ -11,7 +11,7 @@ public interface AddMoodOutputBoundary {
      */
     public void prepareInvalidDateView(String errorMessage);
 
-    public void prepareExistingMoodView(String errorMessage, String mood, String date);
+    public void prepareExistingMoodView(String errorMessage);
 
     public void prepareAddMoodView(LocalDate date);
 

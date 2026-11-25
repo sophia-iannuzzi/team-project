@@ -84,9 +84,8 @@ public class AddMoodInteractor implements AddMoodDateInputBoundary, AddMoodInput
                         // Check if the cognitive data already has a mood input
                         if (!"none".equals(cognitiveData.getMood())){
                             // This means that the date has already been added
-                            presenter.prepareExistingMoodView("You already have added a mood for " + date.toString() +
-                                    ". Would you like to edit this date? (please answer with 'y' to continue " +
-                                    "modifying, or 'n' to return to the home screen)");
+                            presenter.prepareExistingMoodView("You already have added"  +
+                                    cognitiveData.getMood() + "mood for " + date.toString());
                             return;
                         }
                     }
