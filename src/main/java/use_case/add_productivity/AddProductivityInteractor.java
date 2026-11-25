@@ -1,7 +1,7 @@
 package use_case.add_productivity;
 
 import entities.CognitiveData;
-import use_case.add_mood.AddMoodInputData;
+import use_case.add_productivity.AddProductivityInputData;
 import use_case.add_productivity.AddProductivityDateInputData;
 import use_case.add_productivity.AddProductivityDateInputBoundary;
 import use_case.add_productivity.AddProductivityOutputData;
@@ -53,9 +53,11 @@ public class AddProductivityInteractor {
             // Now we have a list of three ints that should be in the format (date; month; year)
             // We will check that this is the case
 
-            //Check that the year is valid (Because the program is being used in 2026, we aren't going to have them add data that is from several years ago
+            //Check that the year is valid (Because the program is being used in 2026, we aren't going to have them add
+            // data that is from several years ago
             if (date_break_down_ints[2] < 2026 || LocalDate.now().getYear() < date_break_down_ints[2]) {
-                // This means that the date they are adding their mood for a year before the program was created, or they are adding their mood for a time that is in the future (we don't want them to add future moods)
+                // This means that the date they are adding their productivity rating for a year before the program was
+                // reated, or they are adding their rating for a time that is in the future
                 presenter.prepareInvalidDateView("The date you entered is invalid. Please try again!");
             } else if (date_break_down_ints[1] < 1 || date_break_down_ints[1] > 12) {
                 // The month value that they added falls outside the range of [1, 12]
@@ -77,27 +79,26 @@ public class AddProductivityInteractor {
                 // Turn this date to a LocalDate object
                 LocalDate date = LocalDate.of(date_break_down_ints[2], date_break_down_ints[1], date_break_down_ints[0]);
 
-                // The date is correctly formatted - now we can check if there is a current mood entry for this date in
+                // The date is correctly formatted - now we can check if there is a current rating entry for this date in
                 // the cognitive data access object
                 CognitiveData[] cogData = this.dataAccessInterface.getCognitiveData(username);
 
                 // Check if there are any entries for the date for that user
                 for (CognitiveData cognitiveData: cogData){
-                    if (cognitiveData.getDate() == date) {
-                        // Check if the cognitive data already has a mood input
-                        if (cognitiveData.getMood() != "none"){
-                            // This means that the date has already been added
-                            presenter.prepareExistingMoodView("You already have added a mood for " + date.toString() +
-                                    ". Would you like to edit this date? (please answer with 'y' to continue " +
-                                    "modifying, or 'n' to return to the home screen)");
+                    if (cognitiveData.getDate().equals(date)) {
+                        // There is a cognitive data row in the database for this user on this date
+                        if (cognitiveData.getProductivity() != 0.0){
+                            // There is already a productivity score for the day
+                            presenter.prepareExistingProductivityView("You already have added a productivity rating" +
+                                    "of " + cognitiveData.getProductivity() +" for "+ date.toString());
                             return;
                         }
                     }
                 }
 
-                // If we have reached this part of the code, then the date is correctly formatted and there is not an existing
-                // mood value for the date, so we can continue to AddMood
-                presenter.prepareAddMoodView(date);
+                // If we have reached this part of the code, then the date is correctly formatted and there is not an
+                // existing productivity value for the date, so we can continue to AddProductivity
+                presenter.prepareAddProductivityView(date, username);
 
             }
         }
@@ -112,7 +113,7 @@ public class AddProductivityInteractor {
         final Double rating = productivityInputData.getRating();
 
         // We have already validated the date and checked if the date was one they wanted to modify
-        // Now all we have to do is call prepareSuccessView and add the data to the mood data access interface
+        // Now all we have to do is call prepareSuccessView and add the data to the productivity data access interface
         this.dataAccessInterface.updateProductivity(username, date, rating);
         presenter.prepareSuccessView(new AddProductivityOutputData(rating, date));
     }

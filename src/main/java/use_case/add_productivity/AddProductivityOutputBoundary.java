@@ -4,12 +4,11 @@ import java.time.LocalDate;
 
 public interface AddProductivityOutputBoundary {
 
+    public void prepareInvalidDateView(String error_message);   // They have entered an invalid date
 
-    public void prepareInvalidDateView(String error_message);
+    public void prepareExistingProductivityView(String error_message);  //They have chosen a date that already has a rating
 
-    public void prepareExistingMoodView(String issue_message);
+    public void prepareAddProductivityView(LocalDate date, String username);    // They have given a correct date and can now add their productivity rating
 
-    public void prepareAddMoodView(LocalDate date);
-
-    void prepareSuccessView(AddProductivityOutputData addProductivityOutputData);
+    public void prepareSuccessView(AddProductivityOutputData addProductivityOutputData);    // They have successfully logged their productivity rating
 }
