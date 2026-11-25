@@ -56,11 +56,6 @@ public class CognitiveData {
     }
 
     /**
-     * @return the date
-     */
-    public Date getDate() { return this.date; }
-
-    /**
      * @return the productivity rating
      */
     public double getProductivity() { return this.productivityRating; }
@@ -69,11 +64,6 @@ public class CognitiveData {
      * @return the cognitive test (returns an array of: {cognitive test type, cognitive test score})
      */
     public Object[] getCognitiveTest() { return this.cogTest; }
-
-    /**
-     * @return the mood
-     */
-    public String getMood() { return this.mood; }
 
 
     /**
@@ -87,4 +77,12 @@ public class CognitiveData {
         return dict;
     }
 
+    /**
+     * getters to get each field of a CognitiveData object
+     */
+    public Date getDate() { return date; }
+    public String getMood() { return mood; }
+    public String getCogTestType() { return (String) cogTest[0]; }
+    public Double getCogTestResult() { return (Double) cogTest[1]; }
+    public Double getProductivityRating() { return productivityRating; }
 }
