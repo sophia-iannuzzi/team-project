@@ -1,16 +1,10 @@
 package use_case.add_productivity;
 
 import entities.CognitiveData;
-import use_case.add_productivity.AddProductivityInputData;
-import use_case.add_productivity.AddProductivityDateInputData;
-import use_case.add_productivity.AddProductivityDateInputBoundary;
-import use_case.add_productivity.AddProductivityOutputData;
-import use_case.add_productivity.AddProductivityOutputBoundary;
 import use_case.data_access.ProductivityDataAccessInterface;
-
 import java.time.LocalDate;
 
-public class AddProductivityInteractor {
+public class AddProductivityInteractor implements AddProductivityDateInputBoundary, AddProductivityInputBoundary{
     private final ProductivityDataAccessInterface dataAccessInterface;
     private final AddProductivityOutputBoundary presenter;
 
@@ -34,6 +28,7 @@ public class AddProductivityInteractor {
         // If the date does not follow the structure of a date in any way, ask them to retry
         if (date_break_down.length != 3) {
             presenter.prepareInvalidDateView("The date you entered is invalid. Please try again!");
+            return; // Ensure code stops executing here
         }
         else {
             // There are three items separated by / in the list
@@ -87,10 +82,10 @@ public class AddProductivityInteractor {
                 for (CognitiveData cognitiveData: cogData){
                     if (cognitiveData.getDate().equals(date)) {
                         // There is a cognitive data row in the database for this user on this date
-                        if (cognitiveData.getProductivity() != 0.0){
+                        if (cognitiveData.getProductivityRating() != 0.0){
                             // There is already a productivity score for the day
                             presenter.prepareExistingProductivityView("You already have added a productivity rating" +
-                                    "of " + cognitiveData.getProductivity() +" for "+ date.toString());
+                                    "of " + cognitiveData.getProductivityRating() +" for "+ date.toString());
                             return;
                         }
                     }
@@ -117,6 +112,4 @@ public class AddProductivityInteractor {
         this.dataAccessInterface.updateProductivity(username, date, rating);
         presenter.prepareSuccessView(new AddProductivityOutputData(rating, date));
     }
-}
-
 }
