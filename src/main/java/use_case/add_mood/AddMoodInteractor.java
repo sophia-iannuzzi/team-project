@@ -102,7 +102,17 @@ public class AddMoodInteractor implements AddMoodDateInputBoundary, AddMoodInput
     }
 
     @Override
-    public void execute(AddMoodInputData moodDateInputData){
+    public void execute(AddMoodInputData moodInputData){
+        //Get the input data from our InputData object
+        final String username = moodInputData.getUsername();
+        final LocalDate date = moodInputData.getDate();
+        final String mood = moodInputData.getMood();
+
+        // We have already validated the date and checked if the date was one they wanted to modify
+        // Now all we have to do is call prepareSuccessView and add the data to the mood data access interface
+        this.moodDataAccessInterface.updateMood(username, date, mood);
+
+
 
     }
 
