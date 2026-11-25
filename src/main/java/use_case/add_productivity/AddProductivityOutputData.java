@@ -1,16 +1,16 @@
 package use_case.add_productivity;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class AddProductivityOutputData {
     private final Float rating;
-    private final Date date;
+    private final LocalDate date;
 
-    public AddProductivityOutputData(Float rating, Date date){
+    public AddProductivityOutputData(Float rating, LocalDate date){
         this.rating = rating;
         this.date = date;
     }
 
     public Float getRating() {return this.rating;}
-    public Date getDate() {return this.date;}
+    public LocalDate getDate() {return this.date;}
 }

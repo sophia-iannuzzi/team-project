@@ -1,11 +1,12 @@
 package entities;
 import java.util.*;
+import java.time.*;
 
 /**
  * An entity representing a user's cognitive data.
  */
 public class CognitiveData {
-    private Date date;
+    private LocalDate date;
     private String mood;
     private Object[] cogTest;
     private Double productivityRating;
@@ -22,15 +23,24 @@ public class CognitiveData {
     }
 
     /**
+     * Getters for each param
+     */
+    public String getMood() { return this.mood;}
+    public LocalDate getDate() {return this.date;}
+    public Object[] getCogTest() {return this.cogTest;}
+    public Double getProductivityRating() {return this.productivityRating;}
+
+
+    /**
      *  CognitiveData class builder (follows Creational Builder design pattern)
      */
     public static class CogBuilder {
-        private Date date;
+        private LocalDate date;
         private String mood = "none";
         private Object[] cogTest = {"blank", 0.0};
         private Double productivityRating = 0.0;
 
-        public CogBuilder(Date date) {
+        public CogBuilder(LocalDate date) {
             this.date = date;
         }
 
@@ -59,8 +69,8 @@ public class CognitiveData {
      * Returns a Hashtable, with nested arrays, representing this CognitiveData of the format:
      * {date : [mood, cogTest, productivityRating]}
      */
-    public Hashtable<Date, Object[]> getCognitiveResults() {
-        Hashtable<Date, Object[]> dict = new Hashtable<Date, Object[]>();
+    public Hashtable<LocalDate, Object[]> getCognitiveResults() {
+        Hashtable<LocalDate, Object[]> dict = new Hashtable<LocalDate, Object[]>();
         Object[] list = {this.mood, this.cogTest, this.productivityRating};
         dict.put(this.date, list);
         return dict;
