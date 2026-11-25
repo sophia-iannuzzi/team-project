@@ -64,7 +64,7 @@ public class CognitiveData {
     /**
      * @return the productivity rating
      */
-    public double getProductivity() { return this.productivityRating; }
+    public double getProductivityRating() { return this.productivityRating; }
 
     /**
      * @return the cognitive test (returns an array of: {cognitive test type, cognitive test score})
@@ -74,8 +74,17 @@ public class CognitiveData {
     /**
      * @return the mood
      */
-    public String getMood() { return this.mood; }
+    public String getMood() { return this.mood;}
 
+    /**
+     * @return the cog test result
+     */
+    public Double getCogTestResult() {return (Double) this.cogTest[1];}
+
+    /**
+     * @return the cog test type
+     */
+    public String getCogTestType() { return (String) this.cogTest[0];}
 
     /**
      * Returns a Hashtable, with nested arrays, representing this CognitiveData of the format:
