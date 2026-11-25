@@ -7,8 +7,8 @@ import java.util.*;
  * The ViewGraph use case interactor
  */
 public class ViewGraphInteractor implements ViewGraphInputBoundry {
-    private ViewGraphDataAccessInterface dataBaseAccess;
-    private ViewGraphOutputBoundry presenter;
+    private final ViewGraphDataAccessInterface dataBaseAccess;
+    private final ViewGraphOutputBoundry presenter;
 
     ViewGraphInteractor(ViewGraphDataAccessInterface dBAccess, ViewGraphOutputBoundry presenter) {
         this.dataBaseAccess = dBAccess;
@@ -22,10 +22,6 @@ public class ViewGraphInteractor implements ViewGraphInputBoundry {
      */
     @Override
     public void execute(ViewGraphInputData inputData) {
-        // use case
-        // search for data in database
-        // take return of database (list of cognitive data) and send to presenter as outputdata
-
         // get an array of CognitiveData from the storage for the current user
         CognitiveData[] cognitiveData = this.dataBaseAccess.getData(inputData.getUsername());
         String choice = inputData.getTypeSelected();
@@ -37,38 +33,55 @@ public class ViewGraphInteractor implements ViewGraphInputBoundry {
         // user selects mood scenario
         switch (choice) {
             case "mood":
-                ArrayList<String> xValues = new ArrayList<String>();
+                ArrayList<String> xBarValues = new ArrayList<String>();
                 // accumulate the moods on the x-axis
                 for (CognitiveData data : cognitiveData) {
                     // add one of each mood
-                    if (!xValues.contains(data.getMood())) {
-                        xValues.add(data.getMood());
+                    if (!xBarValues.contains(data.getMood())) {
+                        xBarValues.add(data.getMood());
                     }
                 }
 
-                double[] yValues = new double[xValues.size()];
+                double[] yBarValues = new double[xBarValues.size()];
                 // accumulate the corresponding productivity values per mood on the y-axis
                 int i = 0;
-                for (String mood : xValues) {
-                    yValues[i] = this.getAverageMood(mood, cognitiveData);
+                for (String mood : xBarValues) {
+                    yBarValues[i] = this.getAverageProductivityMood(mood, cognitiveData);
                     i++;
                 }
 
                 // create the output data
-                ViewGraphOutputData outputData = new ViewGraphOutputData(xName, yName, xValues.toArray(), yValues);
+                ViewGraphOutputData outputBarData = new ViewGraphOutputData("Mood", yName,
+                        xBarValues.toArray(), yBarValues);
 
                 // pass output data to presenter
-                this.presenter.prepareSuccessView(outputData);
+                this.presenter.prepareSuccessView(outputBarData);
+
             case "score":
-//                ArrayList<Double> xValues = new ArrayList<Double>();
-//                // accumulate the scores on the x-axis
-//                for (CognitiveData data : cognitiveData) {
-//                    // add one of each score
-//                    Double score = (Double)data.getCognitiveTest()[1];
-//                    if (!xValues.contains(score)) {
-//                        xValues.add(score);
-//                    }
-//                }
+                ArrayList<Double> xLineValues = new ArrayList<Double>();
+                // accumulate the scores on the x-axis
+                for (CognitiveData data : cognitiveData) {
+                    // add one of each score
+                    Double score = (Double)data.getCognitiveTest()[1];
+                    if (!xLineValues.contains(score)) {
+                        xLineValues.add(score);
+                    }
+                }
+
+                double[] yLineValues = new double[xLineValues.size()];
+                // accumulate the corresponding productivity values per score on the y-axis
+                int j = 0;
+                for (double score : xLineValues) {
+                    yLineValues[j] = this.getAverageProductivityScore(score, cognitiveData);
+                    j++;
+                }
+
+                // create the output data
+                ViewGraphOutputData outputLineData = new ViewGraphOutputData("Scores", yName,
+                        xLineValues.toArray(), yLineValues);
+
+                // pass output data to presenter
+                this.presenter.prepareSuccessView(outputLineData);
         }
     }
 
@@ -78,11 +91,34 @@ public class ViewGraphInteractor implements ViewGraphInputBoundry {
      * @param cognitiveData array of all this user's CognitiveData
      * @return the average productivity rating of the mood.
      */
-    private double getAverageMood(String mood, CognitiveData[] cognitiveData) {
+    private double getAverageProductivityMood(String mood, CognitiveData[] cognitiveData) {
         int amountForMood = 0;
         double sum = 0;
         for (CognitiveData data : cognitiveData) {
             if (data.getMood().equals(mood)) {
+                amountForMood++;
+                sum += data.getProductivity();
+            }
+        }
+
+        if (amountForMood > 0) {
+            return sum / amountForMood;
+        }
+
+        return 0;
+    }
+
+    /**
+     * Helper function to execute. Gets the average productivity rating of current user for a score.
+     * @param score the score.
+     * @param cognitiveData array of all this user's CognitiveData
+     * @return the average productivity rating of the mood.
+     */
+    private double getAverageProductivityScore(double score, CognitiveData[] cognitiveData) {
+        int amountForMood = 0;
+        double sum = 0;
+        for (CognitiveData data : cognitiveData) {
+            if (data.getCognitiveTest()[1].equals(score)) {
                 amountForMood++;
                 sum += data.getProductivity();
             }
