@@ -1,19 +1,19 @@
 package use_case.add_mood;
-import java.util.*;
+import java.time.*;
 
 public class AddMoodOutputData {
     private final String mood;
-    private final Date date;
+    private final LocalDate date;
 
-    public AddMoodOutputData(Date date){
+    public AddMoodOutputData(LocalDate date){
         this.mood = "none";
         this.date = date;
     }
-    public AddMoodOutputData(String mood, Date date){
+    public AddMoodOutputData(String mood, LocalDate date){
         this.mood = mood;
         this.date = date;
     }
 
     public String getMood() {return this.mood;}
-    public Date getDate() {return this.date;}
+    public LocalDate getDate() {return this.date;}
 }

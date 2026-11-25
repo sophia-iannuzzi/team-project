@@ -23,15 +23,6 @@ public class CognitiveData {
     }
 
     /**
-     * Getters for each param
-     */
-    public String getMood() { return this.mood;}
-    public LocalDate getDate() {return this.date;}
-    public Object[] getCogTest() {return this.cogTest;}
-    public Double getProductivityRating() {return this.productivityRating;}
-
-
-    /**
      *  CognitiveData class builder (follows Creational Builder design pattern)
      */
     public static class CogBuilder {
@@ -68,7 +59,7 @@ public class CognitiveData {
     /**
      * @return the date
      */
-    public Date getDate() { return this.date; }
+    public LocalDate getDate() { return this.date; }
 
     /**
      * @return the productivity rating

@@ -108,6 +108,7 @@ The statistical analysis and graph is outputted correctly for the required varia
 2. User is presented with a screen saying "What day do you wish to log your mood for -- please enter date as day/month/year (e.g. 02/01/2000 for January 2nd, 2000)"
 3. User enters the date
 4. If there is an error in the format of the date, they wll be asked to try again
+5. The program checks if there is already a productivity rating for this date, if there is they are told and returned to the home screen
 5. Once they have successfully entered a valid date, the user will be presented with a question: "on a scale of 1 - 10, how productive did you feel on [date] where 10 is extremely productive, and 0 is not productive at all."
 6. If the number they give falls outside the range or is not a valid number, catch that and ask again.
 7. User is presented with a screen that says "you have successfully logged a [rating] productivity rating for [date]"
@@ -117,9 +118,10 @@ The statistical analysis and graph is outputted correctly for the required varia
 2. User is presented with a screen saying "What day do you wish to log your mood for -- please enter date as day/month/year (e.g. 02/01/2000 for January 2nd, 2000)"
 3. User enters the date
 4. If there is an error in the format of the date, they wll be asked to try again
+5. The program checks if they have already added a mood for that date, if they have they will be presented with a screen that tells them they have already logged a mood for this date and then are returned to the home screen
 5. Once they have successfully entered a valid date, the user will be presented with a question: "please select the mood that best describes how you felt on [date] from this list: {happy, sad, angry, anxious, calm, tired, excited}"
-5. If they enter a word that is not one of those then they will be asked to try again
-6. Otherwise, they are presented with the screen "you have successfully logged the mood [their mood] for [date]"
+5. The will press the button that best corresponds with their mood 
+6. Otherwise, they are presented with the screen "you have successfully logged the mood [mood] for [date]"
 7. They are returned to the home screen
 
 ### Use Case 9: See Graph

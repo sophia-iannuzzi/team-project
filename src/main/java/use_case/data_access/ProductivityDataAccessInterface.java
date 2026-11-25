@@ -6,5 +6,5 @@ import java.time.*;
 public interface ProductivityDataAccessInterface {
     CognitiveData[] getCognitiveData(String username);
 
-    void updateProductivity(String username, LocalDate date, Float productivity);
+    void updateProductivity(String username, LocalDate date, Double productivity);
 }

@@ -1,14 +1,19 @@
 package use_case.add_productivity;
 
-public class AddProductivityInputData {
-    private final Float rating;
-    private final String date;
+import java.time.LocalDate;
 
-    public AddProductivityInputData(Float rating, String date){
+public class AddProductivityInputData {
+    private final Double rating;
+    private final LocalDate date;
+    private final String username;
+
+    public AddProductivityInputData(String username, LocalDate date, Double rating){
         this.rating = rating;
         this.date = date;
+        this.username = username;
     }
 
-    public Float getRating() {return this.rating;}
-    public String getDate() {return this.date;}
+    public Double getRating() {return this.rating;}
+    public LocalDate getDate() {return this.date;}
+    public String getUsername() { return this.username;}
 }
