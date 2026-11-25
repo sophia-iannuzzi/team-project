@@ -4,7 +4,7 @@ import view.UserViewGraphView;
 
 import javax.swing.*;
 
-public class Main {
+public class TestView {
     // for testing & temporary viewing of view
     public static void main(String[] args) {
         UserViewGraphView u = new UserViewGraphView();
