@@ -56,6 +56,17 @@ public class CognitiveData {
     }
 
     /**
+     * @return the productivity rating
+     */
+    public double getProductivity() { return this.productivityRating; }
+
+    /**
+     * @return the cognitive test (returns an array of: {cognitive test type, cognitive test score})
+     */
+    public Object[] getCognitiveTest() { return this.cogTest; }
+
+
+    /**
      * Returns a Hashtable, with nested arrays, representing this CognitiveData of the format:
      * {date : [mood, cogTest, productivityRating]}
      */
@@ -66,11 +77,12 @@ public class CognitiveData {
         return dict;
     }
 
-
-    // temporary, official versions on entites_update branch
-    public Date getDate() { return this.date; }
-    public double getProductivity() { return this.productivityRating; }
-    public Object[] getCognitiveTest() { return this.cogTest; }
-    public String getMood() { return this.mood; }
-
+    /**
+     * getters to get each field of a CognitiveData object
+     */
+    public Date getDate() { return date; }
+    public String getMood() { return mood; }
+    public String getCogTestType() { return (String) cogTest[0]; }
+    public Double getCogTestResult() { return (Double) cogTest[1]; }
+    public Double getProductivityRating() { return productivityRating; }
 }
