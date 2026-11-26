@@ -13,7 +13,7 @@ public class RegularUser extends User {
     /**
      * Indicates a User has completed a cognitive test today
      */
-    private void doneTest() { this.doneTest = true; }
+    public void doneTest() { this.doneTest = true; }
 
     @Override
     public String getRole() { return "Regular User"; }
