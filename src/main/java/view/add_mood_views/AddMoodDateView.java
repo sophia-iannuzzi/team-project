@@ -12,14 +12,15 @@ import javax.swing.*;
 public class AddMoodDateView extends JPanel implements ActionListener {
     private final MoodInputViewModel viewModel;
     private final JLabel dateError = new JLabel();
-    private AddMoodController moodController = null;// The only change that might occur here is that they will go to addView
+    private AddMoodController moodController;// The only change that might occur here is that they will go to addView
     private final JTextField dateInputField = new JTextField(10);
     private final JButton addDate;
     private final JButton cancel;
 
 
-    public AddMoodDateView(MoodInputViewModel viewModel){
+    public AddMoodDateView(MoodInputViewModel viewModel, AddMoodController controller){
         this.viewModel = viewModel;
+        this.moodController = controller;
 
         // Create the text at the top of the add mood screen + instructions for how to add the date
         final JLabel title = new JLabel("Add Date For New Mood Screen");
@@ -55,7 +56,6 @@ public class AddMoodDateView extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e){
         if (e.getSource().equals(addDate)){
             final AddMoodState state = this.viewModel.getState();
-            //TODO: fix this part something is wrong
             moodController.execute(state.getUsername(), dateInputField.getText());
         } else if (e.getSource().equals(cancel)){
             //TODO: Connect back to the home view

@@ -1,6 +1,5 @@
 package view.add_mood_views;
-import interface_adapter.add_mood.AddMoodState;
-import interface_adapter.add_mood.MoodInputViewModel;
+import interface_adapter.add_mood.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,6 +11,7 @@ import javax.swing.*;
 public class MoodInputView extends JPanel implements ActionListener{
 
     private final MoodInputViewModel viewModel;
+    private final AddMoodController controller;
 
     // They will be inputting their mood from a dropdown menu, so no need for an error message part!!
     private final JComboBox<String> moodOptions;
@@ -19,8 +19,9 @@ public class MoodInputView extends JPanel implements ActionListener{
     private final JButton cancel;
     private final String[] moods = { "Happy", "Sad", "Angry", "Anxious", "Calm", "Tired", "Excited"};   // for selection
 
-    public MoodInputView (MoodInputViewModel moodInputViewModel){
+    public MoodInputView (MoodInputViewModel moodInputViewModel, AddMoodController controller){
         this.viewModel = moodInputViewModel;
+        this.controller = controller;
 
         // Title and Insrtuctions
         JLabel title = new JLabel("Mood Selection Page");
@@ -64,9 +65,10 @@ public class MoodInputView extends JPanel implements ActionListener{
             String username = currentState.getUsername();
             LocalDate date = currentState.getDate();
 
-            // TODO: Pass username, date, and selectedMood to the AddMoodController. RAAHHHHHHHHHHHHHH
-        }
-        else if (e.getSource().equals(cancel)) {
+            // Pass username, date, and selectedMood to the AddMoodController
+            this.controller.execute(username, date, selectedMood);
+
+        } else if (e.getSource().equals(cancel)) {
             // TODO: Connect back to the home view. There are so many classes oh my actual god
         }
     }
