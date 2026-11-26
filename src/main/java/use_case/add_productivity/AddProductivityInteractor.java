@@ -130,6 +130,6 @@ public class AddProductivityInteractor implements AddProductivityDateInputBounda
         // We have also validated that it is a valid rating that they have added.
         // Now all we have to do is call prepareSuccessView and add the data to the productivity data access interface
         this.dataAccessInterface.updateProductivity(username, date, (Double) rating);
-        presenter.prepareSuccessView(new AddProductivityOutputData(rating, date));
+        presenter.prepareSuccessView(new AddProductivityOutputData(rating, date, username));
     }
 }

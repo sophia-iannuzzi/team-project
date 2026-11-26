@@ -24,8 +24,6 @@ public class AddMoodPresenter implements AddMoodOutputBoundary {
         // I need to get the current state of the model
         AddMoodState moodState = viewModel.getState();
 
-        moodState.setInvalidViewError(error_message);
-
 
     }
 
