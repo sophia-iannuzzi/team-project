@@ -7,12 +7,15 @@ public class RegularUser extends User {
     private Boolean doneTest = false;
 
     public RegularUser(String username) {
-        super(username);
+        super(username, "Regular User");
     }
 
     /**
      * Indicates a User has completed a cognitive test today
      */
     public void doneTest() { this.doneTest = true; }
+
+    @Override
+    public String getRole() { return "Regular User"; }
 
 }
