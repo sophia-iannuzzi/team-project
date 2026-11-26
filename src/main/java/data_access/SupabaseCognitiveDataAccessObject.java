@@ -78,8 +78,7 @@ public class SupabaseCognitiveDataAccessObject implements get_dataDataAccessInte
     private CognitiveData toEntity(JSONObject row) throws JSONException {
         // Tolerate both "2026-11-24" and "2026-11-24T00:00:00" style values.
         final String rawDate = row.getString("date");
-        final Date date = Date.from(LocalDate.parse(rawDate.substring(0, 10))
-                .atStartOfDay(ZoneId.systemDefault()).toInstant());
+        final LocalDate date = LocalDate.parse(rawDate.substring(0, 10));
 
         return new CognitiveData.CogBuilder(date)
                 .mood(row.optString("mood", "none"))

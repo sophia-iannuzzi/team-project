@@ -1,4 +1,12 @@
 package view;
+import java.awt.*;
+import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.List;
 
-public class RegularUserHomeView {
+import javax.swing.*;
+
+
+public class RegularUserHomeView extends JPanel implements ActionListener {
+    
 }

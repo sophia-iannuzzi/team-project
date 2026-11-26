@@ -1,11 +1,12 @@
 package entities;
 import java.util.*;
+import java.time.*;
 
 /**
  * An entity representing a user's cognitive data.
  */
 public class CognitiveData {
-    private Date date;
+    private LocalDate date;
     private String mood;
     private Object[] cogTest;
     private Double productivityRating;
@@ -25,12 +26,12 @@ public class CognitiveData {
      *  CognitiveData class builder (follows Creational Builder design pattern)
      */
     public static class CogBuilder {
-        private Date date;
+        private LocalDate date;
         private String mood = "none";
         private Object[] cogTest = {"blank", 0.0};
         private Double productivityRating = 0.0;
 
-        public CogBuilder(Date date) {
+        public CogBuilder(LocalDate date) {
             this.date = date;
         }
 
@@ -56,33 +57,44 @@ public class CognitiveData {
     }
 
     /**
+     * @return the date
+     */
+    public LocalDate getDate() { return this.date; }
+
+    /**
      * @return the productivity rating
      */
-    public double getProductivity() { return this.productivityRating; }
+    public double getProductivityRating() { return this.productivityRating; }
 
     /**
      * @return the cognitive test (returns an array of: {cognitive test type, cognitive test score})
      */
     public Object[] getCognitiveTest() { return this.cogTest; }
 
+    /**
+     * @return the mood
+     */
+    public String getMood() { return this.mood;}
+
+    /**
+     * @return the cog test result
+     */
+    public Double getCogTestResult() {return (Double) this.cogTest[1];}
+
+    /**
+     * @return the cog test type
+     */
+    public String getCogTestType() { return (String) this.cogTest[0];}
 
     /**
      * Returns a Hashtable, with nested arrays, representing this CognitiveData of the format:
      * {date : [mood, cogTest, productivityRating]}
      */
-    public Hashtable<Date, Object[]> getCognitiveResults() {
-        Hashtable<Date, Object[]> dict = new Hashtable<Date, Object[]>();
+    public Hashtable<LocalDate, Object[]> getCognitiveResults() {
+        Hashtable<LocalDate, Object[]> dict = new Hashtable<LocalDate, Object[]>();
         Object[] list = {this.mood, this.cogTest, this.productivityRating};
         dict.put(this.date, list);
         return dict;
     }
 
-    /**
-     * getters to get each field of a CognitiveData object
-     */
-    public Date getDate() { return date; }
-    public String getMood() { return mood; }
-    public String getCogTestType() { return (String) cogTest[0]; }
-    public Double getCogTestResult() { return (Double) cogTest[1]; }
-    public Double getProductivityRating() { return productivityRating; }
 }

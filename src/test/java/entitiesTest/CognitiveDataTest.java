@@ -1,6 +1,7 @@
 package entitiesTest;
 import entities.CognitiveData;
 import java.util.*;
+import java.time.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,13 +13,13 @@ public class CognitiveDataTest {
 
     @BeforeEach
     void setUp() {
-        this.data = new CognitiveData.CogBuilder(new Date(0)).build();
+        this.data = new CognitiveData.CogBuilder(LocalDate.of(1970,1, 1)).build();
     }
 
     @Test
     void correctBuildTestEmpty() {
-        Date date = new Date(0);
-        Hashtable<Date, Object[]> expected = new Hashtable<Date, Object[]> ();
+        LocalDate date = LocalDate.of(1970, 1, 1);
+        Hashtable<LocalDate, Object[]> expected = new Hashtable<LocalDate, Object[]> ();
         Object[] cogTest = {"blank", 0.0};
         Object[] put = {"none", cogTest, 0.0};
         expected.put(date, put);
@@ -31,7 +32,7 @@ public class CognitiveDataTest {
      */
     @Test
     void builderSetsFields() {
-        Date d = new Date();
+        LocalDate d = LocalDate.now();
         CognitiveData data = new CognitiveData.CogBuilder(d)
                 .mood("happy")
                 .cogTest("CogSci", 85.0)
@@ -46,14 +47,14 @@ public class CognitiveDataTest {
 
     @Test
     void builderUsesDefaults() {
-        CognitiveData data = new CognitiveData.CogBuilder(new Date()).build();
+        CognitiveData data = new CognitiveData.CogBuilder(LocalDate.now()).build();
         assertEquals("none", data.getMood());
         assertEquals(0.0, data.getProductivityRating());
     }
 
     @Test
     void cogTestTypeGetterReturnsBuilderValue() {
-        CognitiveData data = new CognitiveData.CogBuilder(new Date(0)).cogTest("Memory", 42.5).build();
+        CognitiveData data = new CognitiveData.CogBuilder(LocalDate.now()).cogTest("Memory", 42.5).build();
 
         assertEquals("Memory", data.getCogTestType());
         assertEquals(42.5, data.getCogTestResult());
@@ -67,14 +68,14 @@ public class CognitiveDataTest {
 
     @Test
     void getCognitiveResultsReflectsAllBuilderFields() {
-        Date d = new Date(1000L);
+        LocalDate d = LocalDate.ofEpochDay(0);
         CognitiveData full = new CognitiveData.CogBuilder(d)
                 .mood("happy")
                 .cogTest("Attention", 8.0)
                 .productivityRating(7.0)
                 .build();
 
-        Hashtable<Date, Object[]> results = full.getCognitiveResults();
+        Hashtable<LocalDate, Object[]> results = full.getCognitiveResults();
 
         assertEquals(1, results.size());
         Object[] row = results.get(d);
@@ -85,7 +86,7 @@ public class CognitiveDataTest {
 
     @Test
     void laterBuilderCallsOverrideEarlierOnes() {
-        CognitiveData overridden = new CognitiveData.CogBuilder(new Date(0))
+        CognitiveData overridden = new CognitiveData.CogBuilder(LocalDate.now())
                 .mood("sad").mood("happy")
                 .productivityRating(1.0).productivityRating(9.0)
                 .build();
