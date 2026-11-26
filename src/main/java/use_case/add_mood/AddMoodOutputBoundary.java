@@ -13,7 +13,7 @@ public interface AddMoodOutputBoundary {
 
     public void prepareExistingMoodView(String errorMessage);
 
-    public void prepareAddMoodView(LocalDate date);
+    public void prepareAddMoodView(LocalDate date, String username);
 
     public void prepareSuccessView(AddMoodOutputData moodOutputData);
 

@@ -93,7 +93,7 @@ public class AddMoodInteractor implements AddMoodDateInputBoundary, AddMoodInput
 
                 // If we have reached this part of the code, then the date is correctly formatted and there is not an existing
                 // mood value for the date, so we can continue to AddMood
-                presenter.prepareAddMoodView(date);
+                presenter.prepareAddMoodView(date, username);
 
             }
         }

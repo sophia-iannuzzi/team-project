@@ -6,11 +6,19 @@ import java.time.LocalDate;
 
 public class AddMoodPresenter implements AddMoodOutputBoundary {
 
-    public void prepareInvalidDateView(String errorMessage);
+    public void prepareInvalidDateView(String errorMessage){
 
-    public void prepareExistingMoodView(String errorMessage);
+    }
 
-    public void prepareAddMoodView(LocalDate date);
+    public void prepareExistingMoodView(String errorMessage){
 
-    public void prepareSuccessView(AddMoodOutputData moodOutputData);
+    }
+
+    public void prepareAddMoodView(LocalDate date, String username){
+
+    }
+
+    public void prepareSuccessView(AddMoodOutputData moodOutputData){
+
+    }
 }
