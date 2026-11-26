@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 
-public class AddMoodDateView extends JPanel implements ActionListener, MoodInputViewModelListener {
+public class AddMoodDateView extends JPanel implements ActionListener {
     private final MoodInputViewModel viewModel;
     private final JLabel dateError = new JLabel();
     private AddMoodController moodController = null;// The only change that might occur here is that they will go to addView
@@ -20,7 +20,6 @@ public class AddMoodDateView extends JPanel implements ActionListener, MoodInput
 
     public AddMoodDateView(MoodInputViewModel viewModel){
         this.viewModel = viewModel;
-        this.viewModel.addListener(this);
 
         // Create the text at the top of the add mood screen + instructions for how to add the date
         final JLabel title = new JLabel("Add Date For New Mood Screen");
@@ -61,11 +60,5 @@ public class AddMoodDateView extends JPanel implements ActionListener, MoodInput
         } else if (e.getSource().equals(cancel)){
             //TODO: Connect back to the home view
         }
-    }
-
-    @Override
-    public void stateChanged(){
-        final AddMoodState currentState = viewModel.getState();
-        dateError.setText(currentState.getError());
     }
 }
