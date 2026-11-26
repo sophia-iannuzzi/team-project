@@ -7,11 +7,11 @@ import use_case.TestSelection.TestSelectionInputData;
  * The controller for the Test Selection Use Case.
  */
 public class TestSelectionController {
-    private final TestSelectionInputBoundary ChooseCognitiveTestInteractor;
+    private final TestSelectionInputBoundary testSelectionInteractor;
 
-    public TestSelectionController(TestSelectionInputBoundary ChooseCognitiveTestInteractor)
+    public TestSelectionController(TestSelectionInputBoundary testSelectionInteractor)
     {
-        this.ChooseCognitiveTestInteractor = ChooseCognitiveTestInteractor;
+        this.testSelectionInteractor = testSelectionInteractor;
     }
 
     /**
@@ -25,8 +25,7 @@ public class TestSelectionController {
         // creating input data
         final TestSelectionInputData inputData = new TestSelectionInputData(username, hasDoneTest, testType);
         // depending on the testType execute that use case and send input data
-        ChooseCognitiveTestInteractor.execute(inputData);
-        ;
+        testSelectionInteractor.execute(inputData);
 
     }
 }

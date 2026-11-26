@@ -2,11 +2,12 @@ package ForTestingCognitiveTests;
 
 import javax.swing.*;
 
-public class Main {
+public class CognitiveTestTesting {
     public static void main(String[] args) {
-        AppBuilder appBuilder = new AppBuilder();
+        TestAppBuilder appBuilder = new TestAppBuilder();
         JFrame application = appBuilder
                 .addMemoryTestView()
+                .addMemoryTestUseCase()
                 .addAttentionTestView()
                 .addTestSelectionView()
                 .addTestSelectionUseCase()

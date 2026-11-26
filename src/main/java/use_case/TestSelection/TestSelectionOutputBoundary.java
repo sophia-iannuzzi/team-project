@@ -1,5 +1,9 @@
 package use_case.TestSelection;
 
+/**
+ * Output Boundary for the Test Selection Use Case.
+ */
+
 public interface TestSelectionOutputBoundary {
 
     /**

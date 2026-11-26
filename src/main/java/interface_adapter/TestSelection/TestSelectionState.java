@@ -1,5 +1,9 @@
 package interface_adapter.TestSelection;
 
+/**
+ * The State information representing the user who is selecting tests.
+ */
+
 public class TestSelectionState {
 
     private String username = "";

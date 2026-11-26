@@ -51,7 +51,7 @@ public class TestSelectionView extends JPanel implements ActionListener, TestSel
                             testSelectionController.execute(
                                     currentState.getUsername(),
                                     currentState.getTestDone(),
-                                    currentState.getTestType()
+                                    "MEMORY"
                             );
                         }
                     }

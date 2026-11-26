@@ -1,6 +1,8 @@
 package use_case.TestSelection;
 
-import entities.RegularUser;
+/**
+ * The Test Selection Interactor.
+ */
 
 public class TestSelectionInteractor implements TestSelectionInputBoundary {
 
@@ -9,8 +11,8 @@ public class TestSelectionInteractor implements TestSelectionInputBoundary {
 
     public TestSelectionInteractor(TestSelectionDataAccessInterface testSelectionDataAccessInterface,
                                    TestSelectionOutputBoundary testSelectionPresenter) {
-        this.testSelectionPresenter = testSelectionPresenter;
         this.userDataAccessObject = testSelectionDataAccessInterface;
+        this.testSelectionPresenter = testSelectionPresenter;
     }
 
     @Override
@@ -21,20 +23,19 @@ public class TestSelectionInteractor implements TestSelectionInputBoundary {
 
         if (doneTest)
         {
-            testSelectionPresenter.prepareFailView("You have already done a test today");
+            this.testSelectionPresenter.prepareFailView("You have already done a test today");
         }
         else
         {
-
-            // if regular user has not done a test today, get this user
-            final RegularUser user = userDataAccessObject.get(CognitiveDataInput.getUsername());
-
             // make sure database is notified that this user has done a test for the day now
-            userDataAccessObject.saveUserAttemptTest(username, true, CognitiveDataInput.getTestType());
+            // and score is 0 for now
+            this.userDataAccessObject.saveUserAttemptTest(username, true,
+                    CognitiveDataInput.getTestType(), 0.0);
 
             final TestSelectionOutputData loginOutputData = new TestSelectionOutputData(username,
                     CognitiveDataInput.getTestType());
-            testSelectionPresenter.prepareSuccessView(loginOutputData);
+
+            this.testSelectionPresenter.prepareSuccessView(loginOutputData);
         }
     }
 }

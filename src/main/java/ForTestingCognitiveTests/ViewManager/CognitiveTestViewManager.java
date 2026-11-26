@@ -1,14 +1,15 @@
-package ViewManager;
+package ForTestingCognitiveTests.ViewManager;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class ViewManager implements ViewManagerModelListener {
+public class CognitiveTestViewManager implements CognitiveTestViewManagerModelListener {
     private final CardLayout cardLayout;
     private final JPanel views;
-    private final ViewManagerModel viewManagerModel;
+    private final CognitiveTestViewManagerModel viewManagerModel;
 
-    public ViewManager(JPanel views, CardLayout cardLayout, ViewManagerModel viewManagerModel) {
+    public CognitiveTestViewManager(JPanel views, CardLayout cardLayout,
+                                    CognitiveTestViewManagerModel viewManagerModel) {
         this.views = views;
         this.cardLayout = cardLayout;
         this.viewManagerModel = viewManagerModel;

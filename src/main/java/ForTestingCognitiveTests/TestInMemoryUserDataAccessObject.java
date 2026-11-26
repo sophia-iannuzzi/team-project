@@ -2,18 +2,20 @@ package ForTestingCognitiveTests;
 
 import entities.CognitiveData;
 import entities.RegularUser;
+import use_case.MemoryTest.CognitiveTestDataAccessInterface;
 import use_case.TestSelection.TestSelectionDataAccessInterface;
 
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class InMemoryUserDataAccessObject implements TestSelectionDataAccessInterface {
+public class TestInMemoryUserDataAccessObject implements TestSelectionDataAccessInterface,
+        CognitiveTestDataAccessInterface {
 
     private final Map<RegularUser, CognitiveData> accounts = new HashMap<>();
     private String currentUsername;
 
-    public InMemoryUserDataAccessObject(RegularUser user) {
+    public TestInMemoryUserDataAccessObject(RegularUser user) {
         accounts.put(user, new CognitiveData.CogBuilder(new java.util.Date()).build());
         currentUsername = user.getUsername();
     }
@@ -34,7 +36,7 @@ public class InMemoryUserDataAccessObject implements TestSelectionDataAccessInte
     }
 
     @Override
-    public void saveUserAttemptTest(String username, boolean doneTest, String testType) {
+    public void saveUserAttemptTest(String username, boolean doneTest, String testType, double score) {
 
         RegularUser user = get(username);
         if (user == null) {return;}
@@ -42,9 +44,8 @@ public class InMemoryUserDataAccessObject implements TestSelectionDataAccessInte
 
         CognitiveData oldData = accounts.get(user);
 
-        CognitiveData newData = new CognitiveData.CogBuilder(new Date())
-                .mood("Happy") // need getter for getting mood oldData.getMood()
-                .cogTest(testType, 0.0) // need getter for score
+        CognitiveData newData = new CognitiveData.CogBuilder(new Date())// need getter for getting mood oldData.getMood()
+                .cogTest(testType, score) // need getter for score
                 .productivityRating(55.5) // need getter for productivity
                 .build();
 

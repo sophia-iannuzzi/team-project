@@ -3,6 +3,11 @@ package interface_adapter.MemoryTest;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The View Model for the Memorization, Answering and TestResults View.
+ */
+
+
 public class MemoryTestViewModel {
 
     private final List<MemoryTestViewModelListener> listeners = new ArrayList<>();
@@ -17,6 +22,7 @@ public class MemoryTestViewModel {
 
     public void setState(MemoryTestState state) {
         this.state = state;
+        notifyStateChanged();
     }
 
     public void addListener(MemoryTestViewModelListener listener) {

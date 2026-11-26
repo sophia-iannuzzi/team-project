@@ -1,5 +1,9 @@
 package use_case.TestSelection;
 
+/**
+ * Input data for the Test Selection Use Case.
+ */
+
 public class TestSelectionInputData {
 
     private final String username;
@@ -13,11 +17,11 @@ public class TestSelectionInputData {
         this.testType = testType;
     }
 
-    String getUsername() {
+    public String getUsername() {
         return username;
     }
 
-    boolean getUserHasDoneTest() {return hasDoneTest;}
+    public boolean getUserHasDoneTest() {return hasDoneTest;}
 
     public String getTestType() { return testType;}
 }
