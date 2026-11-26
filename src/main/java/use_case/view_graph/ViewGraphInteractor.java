@@ -10,7 +10,7 @@ public class ViewGraphInteractor implements ViewGraphInputBoundry {
     private final ViewGraphDataAccessInterface dataBaseAccess;
     private final ViewGraphOutputBoundry presenter;
 
-    ViewGraphInteractor(ViewGraphDataAccessInterface dBAccess, ViewGraphOutputBoundry presenter) {
+    public ViewGraphInteractor(ViewGraphDataAccessInterface dBAccess, ViewGraphOutputBoundry presenter) {
         this.dataBaseAccess = dBAccess;
         this.presenter = presenter;
     }
@@ -33,7 +33,7 @@ public class ViewGraphInteractor implements ViewGraphInputBoundry {
         // user selects mood scenario
         switch (choice) {
             case "mood":
-                ArrayList<String> xBarValues = new ArrayList<String>();
+                List<String> xBarValues = new ArrayList<String>();
                 // accumulate the moods on the x-axis
                 for (CognitiveData data : cognitiveData) {
                     // add one of each mood
@@ -42,23 +42,21 @@ public class ViewGraphInteractor implements ViewGraphInputBoundry {
                     }
                 }
 
-                double[] yBarValues = new double[xBarValues.size()];
+                List<Double> yBarValues = new ArrayList<Double>();
                 // accumulate the corresponding productivity values per mood on the y-axis
-                int i = 0;
                 for (String mood : xBarValues) {
-                    yBarValues[i] = this.getAverageProductivityMood(mood, cognitiveData);
-                    i++;
+                    yBarValues.add((Double)this.getAverageProductivityMood(mood, cognitiveData));
                 }
 
                 // create the output data
-                ViewGraphOutputData outputBarData = new ViewGraphOutputData("Mood", yName,
-                        xBarValues.toArray(), yBarValues);
+                ViewGraphOutputData outputBarData = new ViewGraphOutputData("bar", "Mood", yName,
+                        (List<Object>)(Object)xBarValues, yBarValues);
 
                 // pass output data to presenter
                 this.presenter.prepareSuccessView(outputBarData);
 
             case "score":
-                ArrayList<Double> xLineValues = new ArrayList<Double>();
+                List<Double> xLineValues = new ArrayList<Double>();
                 // accumulate the scores on the x-axis
                 for (CognitiveData data : cognitiveData) {
                     // add one of each score
@@ -68,17 +66,15 @@ public class ViewGraphInteractor implements ViewGraphInputBoundry {
                     }
                 }
 
-                double[] yLineValues = new double[xLineValues.size()];
+                List<Double> yLineValues = new ArrayList<Double>();
                 // accumulate the corresponding productivity values per score on the y-axis
-                int j = 0;
                 for (double score : xLineValues) {
-                    yLineValues[j] = this.getAverageProductivityScore(score, cognitiveData);
-                    j++;
+                    yLineValues.add((Double)this.getAverageProductivityScore(score, cognitiveData));
                 }
 
                 // create the output data
-                ViewGraphOutputData outputLineData = new ViewGraphOutputData("Scores", yName,
-                        xLineValues.toArray(), yLineValues);
+                ViewGraphOutputData outputLineData = new ViewGraphOutputData("line", "Scores", yName,
+                        (List<Object>)(Object)xLineValues, yLineValues);
 
                 // pass output data to presenter
                 this.presenter.prepareSuccessView(outputLineData);

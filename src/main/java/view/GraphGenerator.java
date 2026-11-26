@@ -37,7 +37,7 @@ public class GraphGenerator {
     }
 
     //creates line graph
-    public JFXPanel createLineGraph(GraphData data){
+    private JFXPanel createLineGraph(GraphData data){
         NumberAxis x = new NumberAxis();
         NumberAxis y = new NumberAxis();
         //stores titles of axis
@@ -67,7 +67,7 @@ public class GraphGenerator {
     }
 
     //does the same as createLinegraph but does it for bar chart
-    public JFXPanel createBarGraph(GraphData data){
+    private JFXPanel createBarGraph(GraphData data){
         CategoryAxis x = new CategoryAxis();
         NumberAxis y = new NumberAxis();
         x.setLabel(data.getxAxisTitle());

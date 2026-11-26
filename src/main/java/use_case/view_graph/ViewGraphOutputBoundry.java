@@ -9,4 +9,6 @@ public interface ViewGraphOutputBoundry {
      * @param viewGraphOutputData the information required to make the graph.
      */
     void prepareSuccessView(ViewGraphOutputData viewGraphOutputData);
+
+    void prepareReturnView();
 }
