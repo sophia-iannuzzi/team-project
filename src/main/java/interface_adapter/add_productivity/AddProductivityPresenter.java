@@ -40,17 +40,6 @@ public class AddProductivityPresenter implements AddProductivityOutputBoundary {
     }
 
     /**
-     * Takes in @params date and username. These are taken in so that we can make a new InputData object with these
-     * Then they should come to a new view that asks them to add their productivity rating. The mood that they input will be passed
-     * through the controller to the inputData and the Interactor again.
-     */
-
-    public void prepareAddProductivityView(LocalDate date, String username) {
-        //TODO: Add this productivity view
-
-    }
-
-    /**
      * Takes in @param AddProductivity, which will be displayed to the user on the date input screen (below the prompt
      * asking for the date value). This message will remain in place until they enter a correct date. This should call
      * the interactor with the new date that they enter if they enter an updated date.
