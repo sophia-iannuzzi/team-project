@@ -46,7 +46,7 @@ public class AddProductivityPresenter implements AddProductivityOutputBoundary {
      */
 
     public void prepareAddProductivityView(LocalDate date, String username) {
-
+        //TODO: Add this productivity view
 
     }
 

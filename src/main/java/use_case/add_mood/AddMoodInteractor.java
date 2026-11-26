@@ -110,6 +110,6 @@ public class AddMoodInteractor implements AddMoodDateInputBoundary, AddMoodInput
         // We have already validated the date and checked if the date was one they wanted to modify
         // Now all we have to do is call prepareSuccessView and add the data to the mood data access interface
         this.moodDataAccessInterface.updateMood(username, date, mood);
-        presenter.prepareSuccessView(new AddMoodOutputData(mood, date));
+        presenter.prepareSuccessView(new AddMoodOutputData(mood, date, username));
     }
 }
