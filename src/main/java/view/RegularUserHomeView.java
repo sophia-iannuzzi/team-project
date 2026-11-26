@@ -7,6 +7,6 @@ import java.util.List;
 import javax.swing.*;
 
 
-public class RegularUserHomeView extends JPanel implements ActionListener, {
+public class RegularUserHomeView extends JPanel implements ActionListener {
     
 }

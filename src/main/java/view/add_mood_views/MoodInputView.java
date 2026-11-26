@@ -64,11 +64,10 @@ public class MoodInputView extends JPanel implements ActionListener{
             String username = currentState.getUsername();
             LocalDate date = currentState.getDate();
 
-            // TODO: Pass username, date, and selectedMood
-            // to the AddMoodController.
+            // TODO: Pass username, date, and selectedMood to the AddMoodController. RAAHHHHHHHHHHHHHH
         }
         else if (e.getSource().equals(cancel)) {
-            // TODO: Connect back to the home view.
+            // TODO: Connect back to the home view. There are so many classes oh my actual god
         }
     }
 }
