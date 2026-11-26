@@ -1,18 +1,38 @@
 package interface_adapter.view_graph;
+import ViewManager.ViewManagerModel;
 import use_case.view_graph.ViewGraphOutputBoundry;
 import use_case.view_graph.ViewGraphOutputData;
 
 public class ViewGraphPresenter implements ViewGraphOutputBoundry {
-    // viewmodel
-    private GraphVisualMaker graphMaker;
+    private final ViewManagerModel viewManagerModel;
+    private final ViewGraphViewModel viewGraphViewModel;
 
-    //SHOULD ALSO REQUIRE viewmodel
-    ViewGraphPresenter(GraphVisualMaker graphMaker) {
-        this.graphMaker = graphMaker;
+    public ViewGraphPresenter(ViewManagerModel viewManagerModel, ViewGraphViewModel viewGraphViewModel) {
+        this.viewGraphViewModel = viewGraphViewModel;
+        this.viewManagerModel = viewManagerModel;
     }
 
-    public void prepareSuccessView(ViewGraphOutputData viewGraphOutputData) {
-        // should call to GraphVisualMaker
-        // should call to viewmodel
+    public void prepareSuccessView(ViewGraphOutputData outputData) {
+        ViewGraphState state = viewGraphViewModel.getState();
+
+        // sets the need for a graph to be true
+        state.setNeedGraph();
+
+        // set titles
+        state.setTitle(outputData.getxAxis() + " vs " + outputData.getyAxis());
+        state.setxTitle(outputData.getxAxis());
+        state.setyTitle(outputData.getyAxis());
+
+        // set values
+        state.setyValues(outputData.getyValues());
+        state.setxValues(outputData.getxValues());
+
+        state.setType(outputData.getType());
+
+        viewManagerModel.setState(viewGraphViewModel.VIEW_NAME);
+        viewGraphViewModel.setState(state);
+        viewGraphViewModel.notifyStateChanged();
     }
+
+    public void prepareReturnView(){}
 }
