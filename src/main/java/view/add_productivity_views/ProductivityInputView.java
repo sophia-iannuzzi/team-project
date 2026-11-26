@@ -1,19 +1,17 @@
 package view.add_productivity_views;
-import interface_adapter.add_productivity.AddProductivityState;
-import interface_adapter.add_productivity.ProductivityInputViewModel;
-import interface_adapter.add_productivity.ProductivityInputViewModelListener;
+import interface_adapter.add_productivity.*;
+
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.SimpleDateFormat;
-import java.util.List;
 
 import javax.swing.*;
 
 
-public class ProductivityInputView extends JPanel implements ActionListener{
+public class ProductivityInputView extends JPanel implements ActionListener, ProductivityInputViewModelListener{
     private final ProductivityInputViewModel viewModel;
+    private final AddProductivityController controller;
 
     // The input fields for the rating
     private final JTextField dateInput = new JTextField(10);
@@ -27,8 +25,10 @@ public class ProductivityInputView extends JPanel implements ActionListener{
     private final JLabel dateError = new JLabel();
 
 
-    public ProductivityInputView(ProductivityInputViewModel viewModel){
+    public ProductivityInputView(ProductivityInputViewModel viewModel, AddProductivityController controller){
         this.viewModel = viewModel;
+        this.controller = controller;
+        this.viewModel.addListener(this);
 
         // Title and instructions as usual
         final JLabel title = new JLabel("Add Your Productivity Rating");
@@ -82,11 +82,17 @@ public class ProductivityInputView extends JPanel implements ActionListener{
             // Get the username from the state
             AddProductivityState state = this.viewModel.getState();
             String username = state.getUsername();
+            this.controller.execute(username, addedDate, addedRating);
 
-            // TODO: Send the username date and rating to the controller to be used as input values
         } else if (e.getSource().equals(this.cancel)){
             //TODO: Send them back to the home view
         }
     }
 
+    @Override
+    public void stateChanged(){
+        AddProductivityState state = this.viewModel.getState();
+
+        dateError.setText(state.getError());
+    }
 }
